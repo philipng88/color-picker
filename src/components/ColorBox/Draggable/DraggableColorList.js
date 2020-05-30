@@ -1,15 +1,7 @@
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
-import styled from "styled-components";
 import DraggableColorBox from "./DraggableColorBox";
-
-const AddColorsPrompt = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 64px);
-  text-transform: capitalize;
-`;
+import { AddColorsPrompt } from "./DraggableColorListStyles";
 
 const DraggableColorList = (props) => {
   const { colors, deleteColor } = props;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -12,41 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SaveIcon from "@material-ui/icons/Save";
-import { drawerWidth } from "../../../variables";
 import ColorPickerDialogForm from "../ColorPickerForm/DialogForm/ColorPickerDialogForm";
-
-const styles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "64px",
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  navButtonsWrapper: {
-    marginRight: "1rem",
-  },
-  navButton: {
-    margin: "0 0.5rem",
-  },
-}));
+import NewPaletteFormNavbarStyles from "./NewPaletteFormNavbarStyles";
 
 const NewPaletteFormNavbar = (props) => {
   const {
@@ -57,7 +23,7 @@ const NewPaletteFormNavbar = (props) => {
     handleSubmit,
   } = props;
   const [formDialogShowing, setFormDialogShowing] = useState(false);
-  const classes = styles();
+  const classes = NewPaletteFormNavbarStyles();
 
   const showFormDialog = () => setFormDialogShowing(true);
   const hideFormDialog = () => setFormDialogShowing(false);
