@@ -5,6 +5,7 @@ import {
   Container,
   Nav,
   PalettesWrapper,
+  CreatePaletteBtn,
 } from "./PaletteListStyles";
 import MiniPalette from "../MiniPalette/MiniPalette";
 
@@ -15,16 +16,15 @@ const PaletteList = (props) => {
       <Container>
         <Nav>
           <h1>Color Picker</h1>
+          <CreatePaletteBtn component={Link} to="/palette/new">
+            create palette
+          </CreatePaletteBtn>
         </Nav>
         <PalettesWrapper>
           {palettes.map((palette) => {
             const { colors, emoji, paletteName, id } = palette;
             return (
-              <Link
-                to={`/palette/${id}`}
-                key={id}
-                style={{ textDecoration: "none" }}
-              >
+              <Link to={`/palette/${id}`} key={id}>
                 <MiniPalette
                   colors={colors}
                   emoji={emoji}
