@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {
   PaletteListWrapper,
   Container,
@@ -10,7 +10,7 @@ import {
 import MiniPalette from "../MiniPalette/MiniPalette";
 
 const PaletteList = (props) => {
-  const { palettes } = props;
+  const { palettes, history, deletePalette } = props;
   return (
     <PaletteListWrapper>
       <Container>
@@ -24,13 +24,15 @@ const PaletteList = (props) => {
           {palettes.map((palette) => {
             const { colors, emoji, paletteName, id } = palette;
             return (
-              <Link to={`/palette/${id}`} key={id}>
-                <MiniPalette
-                  colors={colors}
-                  emoji={emoji}
-                  paletteName={paletteName}
-                />
-              </Link>
+              <MiniPalette
+                colors={colors}
+                emoji={emoji}
+                paletteName={paletteName}
+                key={id}
+                id={id}
+                handleDelete={deletePalette}
+                handleOpen={() => history.push(`/palette/${id}`)}
+              />
             );
           })}
         </PalettesWrapper>
@@ -39,4 +41,4 @@ const PaletteList = (props) => {
   );
 };
 
-export default PaletteList;
+export default withRouter(PaletteList);

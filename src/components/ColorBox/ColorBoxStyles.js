@@ -99,6 +99,7 @@ export default {
     transform: "scale(0.1)",
     opacity: "0",
     color: "white",
+    textTransform: "uppercase",
     "& h1": {
       fontWeight: "400",
       textShadow: "1px 2px black",
@@ -107,7 +108,6 @@ export default {
       textAlign: "center",
       marginBottom: "0",
       padding: "1rem",
-      textTransform: "uppercase",
     },
     "& p": {
       fontSize: "2rem",

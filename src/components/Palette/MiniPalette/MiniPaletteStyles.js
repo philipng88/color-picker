@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+
+export const DeleteIcon = styled(DeleteRoundedIcon)`
+  color: white;
+  background-color: #eb3d30;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  z-index: 10;
+  opacity: 0;
+`;
 
 export const MiniPaletteWrapper = styled.div`
   background-color: white;
@@ -7,8 +21,9 @@ export const MiniPaletteWrapper = styled.div`
   padding: 0.5rem;
   position: relative;
   overflow: hidden;
-  &:hover {
-    cursor: pointer;
+  cursor: pointer;
+  &:hover ${DeleteIcon} {
+    opacity: 1;
   }
 `;
 
