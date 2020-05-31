@@ -16,8 +16,7 @@ const MiniPalette = (props) => {
         style={{ transition: "all .3s ease-in-out" }}
         onClick={(event) => {
           event.stopPropagation();
-          if (window.confirm("Are you sure you want to delete this palette?"))
-            handleDelete(id);
+          handleDelete(id);
         }}
       />
       <ColorsWrapper>

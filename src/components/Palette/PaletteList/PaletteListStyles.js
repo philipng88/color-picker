@@ -1,6 +1,15 @@
-import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import { withStyles } from "@material-ui/styles";
+import styled, { createGlobalStyle } from "styled-components";
+import { TransitionGroup } from "react-transition-group";
+
+export const TransitionStyles = createGlobalStyle`
+  .fade-exit {
+    opacity: 1;
+  }
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity ${({ transitionTime }) => transitionTime}ms ease-out
+  }
+`;
 
 export const PaletteListWrapper = styled.div`
   background-color: blue;
@@ -25,9 +34,13 @@ export const Nav = styled.nav`
   justify-content: space-between;
   color: white;
   align-items: baseline;
+  button,
+  a {
+    color: white;
+  }
 `;
 
-export const PalettesWrapper = styled.div`
+export const PalettesWrapper = styled(TransitionGroup)`
   box-sizing: border-box;
   width: 100%;
   display: grid;
@@ -37,29 +50,3 @@ export const PalettesWrapper = styled.div`
     text-decoration: none;
   }
 `;
-
-export const CreatePaletteBtn = withStyles(() => ({
-  root: {
-    height: "38px",
-    padding: "0 30px",
-    color: "#fff",
-    textAlign: "center",
-    fontSize: "11px",
-    fontWeight: "700",
-    lineHeight: "38px",
-    letterSpacing: "0.1rem",
-    textTransform: "uppercase",
-    textDecoration: "none",
-    whiteSpace: "nowrap",
-    backgroundColor: "#9b4dca",
-    borderRadius: "4px",
-    border: "1px solid #9b4dca",
-    cursor: "pointer",
-    boxSizing: "border-box",
-    "&:hover, &:focus": {
-      borderColor: "#606c76",
-      backgroundColor: "#606c76",
-      outline: "0",
-    },
-  },
-}))(Button);
