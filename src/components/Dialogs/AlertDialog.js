@@ -10,15 +10,23 @@ const AlertDialog = ({
   open,
   title,
   message,
+  accessibilityLabelText,
+  accessibilityDescriptionText,
   confirmText,
   cancelText,
   confirmAction,
   cancelAction,
 }) => (
-  <Dialog open={open}>
-    <DialogTitle>{title}</DialogTitle>
+  <Dialog
+    open={open}
+    aria-labelledby={accessibilityLabelText}
+    aria-describedby={accessibilityDescriptionText}
+  >
+    <DialogTitle id={accessibilityLabelText}>{title}</DialogTitle>
     <DialogContent>
-      <DialogContentText>{message}</DialogContentText>
+      <DialogContentText id={accessibilityDescriptionText}>
+        {message}
+      </DialogContentText>
     </DialogContent>
     <DialogActions>
       <Button color="primary" onClick={confirmAction}>

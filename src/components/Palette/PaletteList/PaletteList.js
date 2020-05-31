@@ -11,13 +11,20 @@ import {
 } from "./PaletteListStyles";
 import MiniPalette from "../MiniPalette/MiniPalette";
 import SimpleDialog from "../../Dialogs/SimpleDialog";
+import AlertDialog from "../../Dialogs/AlertDialog";
 
 const PaletteList = (props) => {
   const { palettes, history, deletePalette } = props;
   const [deletePaletteDialogIsOpen, setDeletePaletteDialogIsOpen] = useState(
     false
   );
+  const [resetPalettesDialogIsOpen, setResetPalettesDialogIsOpen] = useState(
+    false
+  );
   const [deletionId, setDeletionId] = useState("");
+
+  const openResetDialog = () => setResetPalettesDialogIsOpen(true);
+  const closeResetDialog = () => setResetPalettesDialogIsOpen(false);
 
   const openDeleteDialog = (id) => {
     setDeletePaletteDialogIsOpen(true);
@@ -41,10 +48,7 @@ const PaletteList = (props) => {
             <Button
               variant="contained"
               style={{ backgroundColor: "#ff9d49" }}
-              onClick={() => {
-                localStorage.removeItem("palettes");
-                window.location.reload();
-              }}
+              onClick={openResetDialog}
             >
               reset palettes
             </Button>
@@ -82,13 +86,28 @@ const PaletteList = (props) => {
       </PaletteListWrapper>
       <SimpleDialog
         open={deletePaletteDialogIsOpen}
-        accessibilityLabelText=""
+        accessibilityLabelText="delete-palette-dialog-title"
         title="Delete Palette?"
         confirmText="Yes"
         cancelText="No"
         closeDialog={closeDeleteDialog}
         confirmAction={() => deletePalette(deletionId)}
         cancelAction={closeDeleteDialog}
+      />
+      <AlertDialog
+        open={resetPalettesDialogIsOpen}
+        title="Reset Palettes?"
+        message="This action will reset the palettes to its default list. All user-created palettes will be lost. Do you wish to proceed?"
+        accessibilityLabelText="reset-alert-dialog-title"
+        accessibilityDescriptionText="reset-alert-dialog-content-text"
+        confirmText="Yes, reset palettes"
+        cancelText="No, keep current palettes"
+        confirmAction={() => {
+          // TODO: refactor to be asynchronous
+          localStorage.removeItem("palettes");
+          window.location.reload();
+        }}
+        cancelAction={closeResetDialog}
       />
     </>
   );

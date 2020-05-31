@@ -31,9 +31,9 @@ const NewPaletteFormNavbarStyles = makeStyles((theme) => ({
   },
   navButtonsWrapper: {
     marginRight: "1rem",
-  },
-  navButton: {
-    margin: "0 0.5rem",
+    "& button": {
+      margin: "0 0.5rem",
+    },
   },
 }));
 

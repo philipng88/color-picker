@@ -45,6 +45,8 @@ const NewPaletteForm = (props) => {
         open={clearPaletteDialogIsOpen}
         title="Clear Palette?"
         message="You are about to remove all colors from your palette. Are you sure you wish to proceed?"
+        accessibilityLabelText="clear-alert-dialog-title"
+        accessibilityDescriptionText="clear-alert-dialog-content-text"
         confirmText="Yes, Clear Palette"
         cancelText="No, Keep Palette"
         confirmAction={clearColors}
