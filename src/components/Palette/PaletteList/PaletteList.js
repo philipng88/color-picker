@@ -12,6 +12,7 @@ import {
 import MiniPalette from "../MiniPalette/MiniPalette";
 import SimpleDialog from "../../Dialogs/SimpleDialog";
 import AlertDialog from "../../Dialogs/AlertDialog";
+import { transitionTime } from "../../../variables";
 
 const PaletteList = (props) => {
   const { palettes, history, deletePalette } = props;
@@ -35,8 +36,6 @@ const PaletteList = (props) => {
     setDeletePaletteDialogIsOpen(false);
     setDeletionId("");
   };
-
-  const transitionTime = 500;
 
   return (
     <>
