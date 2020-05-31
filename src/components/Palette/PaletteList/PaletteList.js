@@ -13,6 +13,7 @@ import MiniPalette from "../MiniPalette/MiniPalette";
 import SimpleDialog from "../../Dialogs/SimpleDialog";
 import AlertDialog from "../../Dialogs/AlertDialog";
 import { transitionTime } from "../../../variables";
+import asyncLocalStorage from "../../../util/asyncLocalStorage";
 
 const PaletteList = (props) => {
   const { palettes, history, deletePalette } = props;
@@ -36,6 +37,8 @@ const PaletteList = (props) => {
     setDeletePaletteDialogIsOpen(false);
     setDeletionId("");
   };
+
+  const goToPalette = (id) => history.push(`/palette/${id}`);
 
   return (
     <>
@@ -75,7 +78,7 @@ const PaletteList = (props) => {
                     paletteName={paletteName}
                     id={id}
                     openDeleteDialog={openDeleteDialog}
-                    handleOpen={() => history.push(`/palette/${id}`)}
+                    handleOpen={goToPalette}
                   />
                 </CSSTransition>
               );
@@ -101,11 +104,11 @@ const PaletteList = (props) => {
         accessibilityDescriptionText="reset-alert-dialog-content-text"
         confirmText="Yes, reset palettes"
         cancelText="No, keep current palettes"
-        confirmAction={() => {
-          // TODO: refactor to be asynchronous
-          localStorage.removeItem("palettes");
-          window.location.reload();
-        }}
+        confirmAction={() =>
+          asyncLocalStorage
+            .removeItem("palettes")
+            .then(() => window.location.reload())
+        }
         cancelAction={closeResetDialog}
       />
     </>
