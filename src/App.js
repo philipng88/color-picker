@@ -9,6 +9,7 @@ import seedColors from "./util/seedColors";
 import generatePalette from "./util/colorHelpers";
 import { transitionTime } from "./variables";
 import Page from "./components/Helpers/Page";
+import ErrorPage from "./components/Error/ErrorPage";
 
 const App = () => {
   const [palettes, setPalettes] = useState(
@@ -76,6 +77,9 @@ const App = () => {
                   </Page>
                 )}
               />
+              <Route>
+                <ErrorPage />
+              </Route>
             </Switch>
           </CSSTransition>
         </TransitionGroup>

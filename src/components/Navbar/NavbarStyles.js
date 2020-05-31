@@ -12,7 +12,6 @@ export const NavbarLogo = styled.div`
   padding: 0 13px;
   font-size: 22px;
   background-color: #eceff1;
-  font-family: "Roboto", sans-serif;
   height: 100%;
   display: flex;
   align-items: center;

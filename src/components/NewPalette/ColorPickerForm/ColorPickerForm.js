@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import chroma from "chroma-js";
+import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import { maxColors } from "../../../variables";
-import {
-  StyledChromePicker,
-  ColorNameInput,
-  SubmitButton,
-} from "./ColorPickerFormStyles";
+import { StyledChromePicker, ColorNameInput } from "./ColorPickerFormStyles";
 
 const ColorPickerForm = (props) => {
   const { colors, setColors } = props;
@@ -52,7 +49,7 @@ const ColorPickerForm = (props) => {
           label="Color Name"
           margin="normal"
         />
-        <SubmitButton
+        <Button
           variant="contained"
           type="submit"
           style={{
@@ -64,11 +61,15 @@ const ColorPickerForm = (props) => {
                 ? "black"
                 : "white"
               : "rgba(0, 0, 0, 0.26)",
+            width: "100%",
+            padding: "1rem",
+            marginTop: "1rem",
+            fontSize: "2rem",
           }}
           disabled={paletteIsFull}
         >
           {paletteIsFull ? "palette full" : "add color"}
-        </SubmitButton>
+        </Button>
       </ValidatorForm>
     </>
   );
