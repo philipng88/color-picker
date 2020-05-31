@@ -10,7 +10,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import CloseIcon from "@material-ui/icons/Close";
 import arrayMove from "array-move";
 import DraggableColorList from "../ColorBox/Draggable/DraggableColorList";
-import ConfirmationDialog from "../ConfirmationDialog";
+import AlertDialog from "../Dialogs/AlertDialog";
 import NewPaletteFormNavbar from "./NewPaletteFormNavbar/NewPaletteFormNavbar";
 import ColorPickerForm from "./ColorPickerForm/ColorPickerForm";
 import NewPaletteFormStyles from "./NewPaletteFormStyles";
@@ -41,7 +41,7 @@ const NewPaletteForm = (props) => {
 
   return (
     <>
-      <ConfirmationDialog
+      <AlertDialog
         open={clearPaletteDialogIsOpen}
         title="Clear Palette?"
         message="You are about to remove all colors from your palette. Are you sure you wish to proceed?"

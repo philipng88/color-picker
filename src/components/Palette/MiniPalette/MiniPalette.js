@@ -8,16 +8,25 @@ import {
 import displayEmoji from "../../../util/displayEmoji";
 
 const MiniPalette = (props) => {
-  const { paletteName, emoji, colors, handleOpen, handleDelete, id } = props;
+  const {
+    paletteName,
+    emoji,
+    colors,
+    handleOpen,
+    openDeleteDialog,
+    id,
+  } = props;
+
+  const deletePalette = (event) => {
+    event.stopPropagation();
+    openDeleteDialog(id);
+  };
 
   return (
     <MiniPaletteWrapper onClick={handleOpen}>
       <DeleteIcon
         style={{ transition: "all .3s ease-in-out" }}
-        onClick={(event) => {
-          event.stopPropagation();
-          handleDelete(id);
-        }}
+        onClick={deletePalette}
       />
       <ColorsWrapper>
         {colors.map((color) => (

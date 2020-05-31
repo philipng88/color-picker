@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Button from "@material-ui/core/Button";
@@ -10,10 +10,27 @@ import {
   TransitionStyles,
 } from "./PaletteListStyles";
 import MiniPalette from "../MiniPalette/MiniPalette";
+import SimpleDialog from "../../Dialogs/SimpleDialog";
 
 const PaletteList = (props) => {
   const { palettes, history, deletePalette } = props;
+  const [deletePaletteDialogIsOpen, setDeletePaletteDialogIsOpen] = useState(
+    false
+  );
+  const [deletionId, setDeletionId] = useState("");
+
+  const openDeleteDialog = (id) => {
+    setDeletePaletteDialogIsOpen(true);
+    setDeletionId(id);
+  };
+
+  const closeDeleteDialog = () => {
+    setDeletePaletteDialogIsOpen(false);
+    setDeletionId("");
+  };
+
   const transitionTime = 500;
+
   return (
     <>
       <TransitionStyles transitionTime={transitionTime} />
@@ -54,7 +71,7 @@ const PaletteList = (props) => {
                     emoji={emoji}
                     paletteName={paletteName}
                     id={id}
-                    handleDelete={deletePalette}
+                    openDeleteDialog={openDeleteDialog}
                     handleOpen={() => history.push(`/palette/${id}`)}
                   />
                 </CSSTransition>
@@ -63,6 +80,16 @@ const PaletteList = (props) => {
           </PalettesWrapper>
         </Container>
       </PaletteListWrapper>
+      <SimpleDialog
+        open={deletePaletteDialogIsOpen}
+        accessibilityLabelText=""
+        title="Delete Palette?"
+        confirmText="Yes"
+        cancelText="No"
+        closeDialog={closeDeleteDialog}
+        confirmAction={() => deletePalette(deletionId)}
+        cancelAction={closeDeleteDialog}
+      />
     </>
   );
 };
