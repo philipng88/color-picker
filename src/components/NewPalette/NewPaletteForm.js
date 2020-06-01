@@ -14,6 +14,7 @@ import AlertDialog from "../Dialogs/AlertDialog";
 import NewPaletteFormNavbar from "./NewPaletteFormNavbar/NewPaletteFormNavbar";
 import ColorPickerForm from "./ColorPickerForm/ColorPickerForm";
 import NewPaletteFormStyles from "./NewPaletteFormStyles";
+import { maxColors } from "../../variables";
 
 const NewPaletteForm = (props) => {
   const classes = NewPaletteFormStyles();
@@ -30,6 +31,20 @@ const NewPaletteForm = (props) => {
   const clearColors = () => {
     setColors([]);
     setClearPaletteDialogIsOpen(false);
+  };
+
+  const addRandomColor = () => {
+    const allColors = palettes.map((palette) => palette.colors).flat();
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+      isDuplicateColor = colors.some(
+        // eslint-disable-next-line no-loop-func
+        (color) => color.name === randomColor.name
+      );
+    }
+    setColors([...colors, randomColor]);
   };
 
   const handleSubmit = (newPalette) => {
@@ -79,14 +94,24 @@ const NewPaletteForm = (props) => {
             <Typography variant="h4" gutterBottom>
               Design Your Palette
             </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              disabled={!colors.length}
-              onClick={() => setClearPaletteDialogIsOpen(true)}
-            >
-              clear palette
-            </Button>
+            <div className={classes.buttons}>
+              <Button
+                variant="contained"
+                color="secondary"
+                disabled={!colors.length}
+                onClick={() => setClearPaletteDialogIsOpen(true)}
+              >
+                clear palette
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={colors.length >= maxColors}
+                onClick={addRandomColor}
+              >
+                random color
+              </Button>
+            </div>
             <ColorPickerForm colors={colors} setColors={setColors} />
           </div>
         </Drawer>
