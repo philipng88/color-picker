@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -101,6 +102,27 @@ const NewPaletteFormNavbar = (props) => {
       </div>
     </>
   );
+};
+
+NewPaletteFormNavbar.propTypes = {
+  palettes: PropTypes.arrayOf(
+    PropTypes.shape({
+      colors: PropTypes.arrayOf(
+        PropTypes.shape({
+          color: PropTypes.string,
+          name: PropTypes.string,
+        })
+      ),
+      emoji: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({ color: PropTypes.string, name: PropTypes.string })
+  ),
+  drawerIsOpen: PropTypes.bool.isRequired,
+  handleDrawerOpen: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default withRouter(NewPaletteFormNavbar);

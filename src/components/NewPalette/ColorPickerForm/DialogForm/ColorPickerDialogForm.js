@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -83,6 +84,23 @@ const ColorPickerDialogForm = (props) => {
       </Dialog>
     </>
   );
+};
+
+ColorPickerDialogForm.propTypes = {
+  palettes: PropTypes.arrayOf(
+    PropTypes.shape({
+      colors: PropTypes.arrayOf(
+        PropTypes.shape({
+          color: PropTypes.string,
+          name: PropTypes.string,
+        })
+      ),
+      emoji: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+  handleSubmit: PropTypes.func.isRequired,
+  hideFormDialog: PropTypes.func.isRequired,
 };
 
 export default ColorPickerDialogForm;

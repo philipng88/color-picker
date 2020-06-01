@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
@@ -66,6 +67,17 @@ const SimpleDialog = ({
       </List>
     </Dialog>
   );
+};
+
+SimpleDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  accessibilityLabelText: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  confirmText: PropTypes.string.isRequired,
+  cancelText: PropTypes.string.isRequired,
+  closeDialog: PropTypes.func.isRequired,
+  confirmAction: PropTypes.func.isRequired,
+  cancelAction: PropTypes.func.isRequired,
 };
 
 export default SimpleDialog;

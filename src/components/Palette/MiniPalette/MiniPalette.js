@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import PropTypes from "prop-types";
 import {
   MiniPaletteWrapper,
   ColorsWrapper,
@@ -51,5 +52,16 @@ const MiniPalette = memo(
     return false;
   }
 );
+
+MiniPalette.propTypes = {
+  paletteName: PropTypes.string.isRequired,
+  emoji: PropTypes.string.isRequired,
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({ color: PropTypes.string, name: PropTypes.string })
+  ),
+  handleOpen: PropTypes.func,
+  openDeleteDialog: PropTypes.func,
+  id: PropTypes.string,
+};
 
 export default MiniPalette;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import ColorBox from "../ColorBox/ColorBox";
 import Navbar from "../Navbar/Navbar";
 import PaletteFooter from "./Footer/PaletteFooter";
@@ -37,6 +38,13 @@ const Palette = (props) => {
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </PaletteWrapper>
   );
+};
+
+Palette.propTypes = {
+  colors: PropTypes.array,
+  emoji: PropTypes.string,
+  paletteName: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default Palette;

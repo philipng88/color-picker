@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import Slider from "rc-slider";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -78,6 +79,13 @@ const Navbar = (props) => {
       />
     </NavbarWrapper>
   );
+};
+
+Navbar.propTypes = {
+  level: PropTypes.number,
+  setLevel: PropTypes.func,
+  handleChange: PropTypes.func,
+  showLevelSlider: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

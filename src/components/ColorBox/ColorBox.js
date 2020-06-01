@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withStyles } from "@material-ui/styles";
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import ColorBoxStyles from "./ColorBoxStyles";
 
 class ColorBox extends Component {
@@ -69,5 +70,14 @@ class ColorBox extends Component {
     );
   }
 }
+
+ColorBox.propTypes = {
+  background: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  colorId: PropTypes.string,
+  paletteId: PropTypes.string,
+  showingFullPalette: PropTypes.bool,
+  classes: PropTypes.object,
+};
 
 export default withStyles(ColorBoxStyles)(ColorBox);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -133,6 +134,22 @@ const NewPaletteForm = (props) => {
       </div>
     </>
   );
+};
+
+NewPaletteForm.propTypes = {
+  palettes: PropTypes.arrayOf(
+    PropTypes.shape({
+      colors: PropTypes.arrayOf(
+        PropTypes.shape({
+          color: PropTypes.string,
+          name: PropTypes.string,
+        })
+      ),
+      emoji: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+  savePalette: PropTypes.func.isRequired,
 };
 
 export default withRouter(NewPaletteForm);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import chroma from "chroma-js";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
@@ -73,6 +74,13 @@ const ColorPickerForm = (props) => {
       </ValidatorForm>
     </>
   );
+};
+
+ColorPickerForm.propTypes = {
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({ color: PropTypes.string, name: PropTypes.string })
+  ),
+  setColors: PropTypes.func.isRequired,
 };
 
 export default ColorPickerForm;

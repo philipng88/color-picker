@@ -1,5 +1,6 @@
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
+import PropTypes from "prop-types";
 import DraggableColorBox from "./DraggableColorBox";
 import { AddColorsPrompt } from "./DraggableColorListStyles";
 
@@ -24,6 +25,16 @@ const DraggableColorList = (props) => {
       )}
     </div>
   );
+};
+
+DraggableColorList.propTypes = {
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({
+      color: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+  deleteColor: PropTypes.func.isRequired,
 };
 
 export default SortableContainer(DraggableColorList);

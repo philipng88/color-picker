@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import {
   PaletteListWrapper,
@@ -113,6 +114,22 @@ const PaletteList = (props) => {
       />
     </>
   );
+};
+
+PaletteList.propTypes = {
+  palettes: PropTypes.arrayOf(
+    PropTypes.shape({
+      colors: PropTypes.arrayOf(
+        PropTypes.shape({
+          color: PropTypes.string,
+          name: PropTypes.string,
+        })
+      ),
+      emoji: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+  deletePalette: PropTypes.func,
 };
 
 export default withRouter(PaletteList);

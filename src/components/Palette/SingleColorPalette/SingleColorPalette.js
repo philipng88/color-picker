@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import ColorBox from "../../ColorBox/ColorBox";
 import Navbar from "../../Navbar/Navbar";
 import PaletteFooter from "../Footer/PaletteFooter";
@@ -41,6 +42,13 @@ const SingleColorPalette = (props) => {
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </SingleColorPaletteWrapper>
   );
+};
+
+SingleColorPalette.propTypes = {
+  colorId: PropTypes.string,
+  paletteName: PropTypes.string,
+  emoji: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default SingleColorPalette;

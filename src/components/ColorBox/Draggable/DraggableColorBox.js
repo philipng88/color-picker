@@ -2,6 +2,7 @@ import React from "react";
 import { SortableElement } from "react-sortable-hoc";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
+import PropTypes from "prop-types";
 import {
   DraggableColorBoxWrapper,
   BoxContent,
@@ -19,6 +20,12 @@ const DraggableColorBox = (props) => {
       </BoxContent>
     </DraggableColorBoxWrapper>
   );
+};
+
+DraggableColorBox.propTypes = {
+  color: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default SortableElement(DraggableColorBox);
