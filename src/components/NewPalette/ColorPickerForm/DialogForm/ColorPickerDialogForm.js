@@ -26,6 +26,13 @@ const ColorPickerDialogForm = (props) => {
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       );
     });
+    ValidatorForm.addValidationRule("noWhiteSpaceBeginOrEnd", (value) => {
+      return value.match(/^[^\s]+(\s+[^\s]+)*$/);
+    });
+    ValidatorForm.addValidationRule("restrictedName", (value) => {
+      const restrictedNames = ["new"];
+      return !restrictedNames.includes(value.toLowerCase());
+    });
   }, [palettes]);
 
   return (
@@ -56,7 +63,7 @@ const ColorPickerDialogForm = (props) => {
         >
           1<span>&#41;</span> Choose A Palette Name
         </DialogTitle>
-        <ValidatorForm onSubmit={() => setStage("emoji")}>
+        <ValidatorForm onSubmit={() => setStage("emoji")} debounceTime={1500}>
           <DialogContent style={{ paddingTop: 0 }}>
             <TextValidator
               placeholder="My New Palette"
@@ -65,10 +72,17 @@ const ColorPickerDialogForm = (props) => {
               fullWidth
               margin="normal"
               onChange={(event) => setNewPaletteName(event.target.value)}
-              validators={["required", "paletteNameIsUnique"]}
+              validators={[
+                "required",
+                "paletteNameIsUnique",
+                "noWhiteSpaceBeginOrEnd",
+                "restrictedName",
+              ]}
               errorMessages={[
                 "Enter a palette name",
                 "Palette name is already in use",
+                "No empty space before or after name",
+                "Please choose another name",
               ]}
             />
           </DialogContent>

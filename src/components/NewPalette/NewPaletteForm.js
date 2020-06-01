@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
+import slugify from "slugify";
 import PropTypes from "prop-types";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
@@ -49,7 +50,7 @@ const NewPaletteForm = (props) => {
   };
 
   const handleSubmit = (newPalette) => {
-    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.id = slugify(newPalette.paletteName, { lower: true });
     newPalette.colors = colors;
     savePalette(newPalette);
     history.push("/");

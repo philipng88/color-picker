@@ -20,6 +20,8 @@ const App = () => {
     setPalettes((prev) => prev.filter((palette) => palette.id !== id));
   const savePalette = (newPalette) => setPalettes([newPalette, ...palettes]);
 
+  const PaletteIds = palettes.map((palette) => palette.id);
+
   useEffect(() => localStorage.setItem("palettes", JSON.stringify(palettes)), [
     palettes,
   ]);
@@ -55,11 +57,17 @@ const App = () => {
                 path="/palette/:id"
                 render={(routeProps) => (
                   <Page>
-                    <Palette
-                      palette={generatePalette(
-                        findPalette(routeProps.match.params.id)
-                      )}
-                    />
+                    {PaletteIds.some(
+                      (paletteId) => paletteId === routeProps.match.params.id
+                    ) ? (
+                      <Palette
+                        palette={generatePalette(
+                          findPalette(routeProps.match.params.id)
+                        )}
+                      />
+                    ) : (
+                      <ErrorPage />
+                    )}
                   </Page>
                 )}
               />
