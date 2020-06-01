@@ -28,7 +28,13 @@ export const MiniPaletteWrapper = styled.div`
 `;
 
 export const ColorsWrapper = styled.div`
-  background-color: #dae1e4;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    #ccc 10px,
+    #ccc 20px
+  );
   height: 150px;
   width: 100%;
   display: grid;

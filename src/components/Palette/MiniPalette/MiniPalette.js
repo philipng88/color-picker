@@ -6,6 +6,7 @@ import {
   DeleteIcon,
 } from "./MiniPaletteStyles";
 import displayEmoji from "../../../util/displayEmoji";
+import seedColors from "../../../util/seedColors";
 
 const MiniPalette = memo(
   (props) => {
@@ -18,6 +19,8 @@ const MiniPalette = memo(
       id,
     } = props;
 
+    const defaultPalettesNames = seedColors.map((item) => item.paletteName);
+
     const deletePalette = (event) => {
       event.stopPropagation();
       openDeleteDialog(id);
@@ -25,10 +28,12 @@ const MiniPalette = memo(
 
     return (
       <MiniPaletteWrapper onClick={() => handleOpen(id)}>
-        <DeleteIcon
-          style={{ transition: "all .3s ease-in-out" }}
-          onClick={deletePalette}
-        />
+        {!defaultPalettesNames.includes(paletteName) && (
+          <DeleteIcon
+            style={{ transition: "all .3s ease-in-out" }}
+            onClick={deletePalette}
+          />
+        )}
         <ColorsWrapper>
           {colors.map(({ color, name }) => (
             <div style={{ backgroundColor: color }} key={name} />

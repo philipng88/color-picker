@@ -100,6 +100,7 @@ export default {
     opacity: "0",
     color: "white",
     textTransform: "uppercase",
+    zIndex: "-5",
     "& h1": {
       fontWeight: "400",
       textShadow: "1px 2px black",
