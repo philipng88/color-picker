@@ -1,6 +1,12 @@
 import chroma from "chroma-js";
 
 export default {
+  adjustedColor: {
+    color: ({ background }) =>
+      chroma.contrast(background, "white") < 4.5
+        ? "rgba(0, 0, 0, 0.5)"
+        : "white",
+  },
   colorBox: {
     width: "20%",
     height: ({ showingFullPalette }) => (showingFullPalette ? "25%" : "50%"),
@@ -15,17 +21,7 @@ export default {
       transition: "0.5s",
     },
   },
-  colorName: {
-    color: ({ background }) =>
-      chroma.contrast(background, "white") < 4.5
-        ? "rgba(0, 0, 0, 0.5)"
-        : "white",
-  },
   seeMore: {
-    color: ({ background }) =>
-      chroma.contrast(background, "white") < 4.5
-        ? "rgba(0, 0, 0, 0.5)"
-        : "white",
     background: "rgba(255, 255, 255, 0.3)",
     position: "absolute",
     border: "none",
@@ -38,10 +34,6 @@ export default {
     textTransform: "uppercase",
   },
   copyButton: {
-    color: ({ background }) =>
-      chroma.contrast(background, "white") < 4.5
-        ? "rgba(0, 0, 0, 0.5)"
-        : "white",
     width: "100px",
     height: "30px",
     position: "absolute",
@@ -58,6 +50,7 @@ export default {
     textTransform: "uppercase",
     border: "none",
     opacity: "0",
+    cursor: "pointer",
   },
   boxContent: {
     position: "absolute",

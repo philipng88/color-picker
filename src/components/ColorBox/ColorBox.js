@@ -23,6 +23,7 @@ class ColorBox extends Component {
     } = this.props;
 
     const {
+      adjustedColor,
       colorBox,
       copyOverlay,
       showOverlay,
@@ -53,16 +54,16 @@ class ColorBox extends Component {
           </div>
           <div className="copy-container">
             <div className={boxContent}>
-              <span className={colorName}>{name}</span>
+              <span className={adjustedColor}>{name}</span>
             </div>
-            <button className={copyButton}>Copy</button>
+            <button className={clsx(copyButton, adjustedColor)}>copy</button>
           </div>
           {showingFullPalette && (
             <Link
               to={`/palette/${paletteId}/${colorId}`}
               onClick={(e) => e.stopPropagation()}
             >
-              <span className={seeMore}>MORE</span>
+              <span className={clsx(seeMore, adjustedColor)}>more</span>
             </Link>
           )}
         </div>

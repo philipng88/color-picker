@@ -16,10 +16,10 @@ export const GoBackBoxWrapper = styled.div`
   margin: 0 auto;
   display: inline-block;
   position: relative;
-  cursor: pointer;
   margin-bottom: -4px;
   background-color: black;
   a {
+    cursor: pointer;
     width: 100px;
     height: 30px;
     position: absolute;
