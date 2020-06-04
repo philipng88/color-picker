@@ -18,6 +18,19 @@ const ColorPickerForm = (props) => {
     setNewColorName("");
   };
 
+  const AddColorButtonStyle = {
+    backgroundColor: !paletteIsFull ? currentColor : "rgba(0, 0, 0, 0.12)",
+    color: !paletteIsFull
+      ? chroma.contrast(currentColor, "white") < 4.5
+        ? "black"
+        : "white"
+      : "rgba(0, 0, 0, 0.26)",
+    width: "100%",
+    padding: "1rem",
+    marginTop: "1rem",
+    fontSize: "2rem",
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule("colorNameIsUnique", (value) => {
       return colors.every(
@@ -49,24 +62,12 @@ const ColorPickerForm = (props) => {
           variant="filled"
           label="Color Name"
           margin="normal"
+          disabled={paletteIsFull}
         />
         <Button
           variant="contained"
           type="submit"
-          style={{
-            backgroundColor: !paletteIsFull
-              ? currentColor
-              : "rgba(0, 0, 0, 0.12)",
-            color: !paletteIsFull
-              ? chroma.contrast(currentColor, "white") < 4.5
-                ? "black"
-                : "white"
-              : "rgba(0, 0, 0, 0.26)",
-            width: "100%",
-            padding: "1rem",
-            marginTop: "1rem",
-            fontSize: "2rem",
-          }}
+          style={AddColorButtonStyle}
           disabled={paletteIsFull}
         >
           {paletteIsFull ? "palette full" : "add color"}
