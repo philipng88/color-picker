@@ -48,7 +48,7 @@ class ColorBox extends Component {
       >
         <div className={colorBox}>
           <div className={clsx(copyOverlay, copied && showOverlay)} />
-          <div className={clsx(copyMsg, copied && showMessage)}>
+          <div className={clsx(copyMsg, adjustedColor, copied && showMessage)}>
             <h1>copied!</h1>
             <p className={colorName}>{background}</p>
           </div>

@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Slider from "rc-slider";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
 import HomeIcon from "@material-ui/icons/HomeRounded";
 import IconButton from "@material-ui/core/IconButton";
-import {
-  NavbarWrapper,
-  NavbarLogo,
-  SliderContainer,
-  SelectContainer,
-} from "./NavbarStyles";
-import "rc-slider/assets/index.css";
+import Typography from "@material-ui/core/Typography";
+import { NavbarWrapper, NavbarLogo } from "./NavbarStyles";
 
 const Navbar = (props) => {
-  const { level, setLevel, handleChange, showLevelSlider } = props;
+  const { handleChange, heading } = props;
   const [format, setFormat] = useState("hex");
   const [snackbarVisible, setSnackbarVisible] = useState(false);
 
@@ -36,27 +30,17 @@ const Navbar = (props) => {
           <HomeIcon /> home
         </Link>
       </NavbarLogo>
-      {showLevelSlider && (
-        <div>
-          <span>Level: {level}</span>
-          <SliderContainer>
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={setLevel}
-            />
-          </SliderContainer>
-        </div>
-      )}
-      <SelectContainer>
-        <Select variant="standard" onChange={handleFormatChange} value={format}>
-          <MenuItem value="hex">Hex value</MenuItem>
-          <MenuItem value="rgb">RGB value</MenuItem>
-          <MenuItem value="rgba">RGBA value</MenuItem>
-        </Select>
-      </SelectContainer>
+      <Typography variant="h5">{heading}</Typography>
+      <Select
+        variant="standard"
+        onChange={handleFormatChange}
+        value={format}
+        style={{ marginRight: "1rem" }}
+      >
+        <MenuItem value="hex">Hex value</MenuItem>
+        <MenuItem value="rgb">RGB value</MenuItem>
+        <MenuItem value="hsl">HSL value</MenuItem>
+      </Select>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={snackbarVisible}
@@ -82,10 +66,9 @@ const Navbar = (props) => {
 };
 
 Navbar.propTypes = {
-  level: PropTypes.number,
-  setLevel: PropTypes.func,
   handleChange: PropTypes.func,
-  showLevelSlider: PropTypes.bool.isRequired,
+  paletteName: PropTypes.string,
+  colorName: PropTypes.string,
 };
 
 export default Navbar;

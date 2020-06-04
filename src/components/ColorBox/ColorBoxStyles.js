@@ -91,7 +91,6 @@ export default {
     fontSize: "4rem",
     transform: "scale(0.1)",
     opacity: "0",
-    color: "white",
     textTransform: "uppercase",
     zIndex: "-5",
     "& h1": {

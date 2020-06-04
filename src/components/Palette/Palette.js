@@ -6,7 +6,6 @@ import PaletteFooter from "./Footer/PaletteFooter";
 import { PaletteWrapper, ColorBoxWrapper } from "./PaletteStyles";
 
 const Palette = (props) => {
-  const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const {
     palette: { colors, emoji, paletteName, id: paletteId },
@@ -15,13 +14,11 @@ const Palette = (props) => {
   return (
     <PaletteWrapper>
       <Navbar
-        level={level}
-        setLevel={setLevel}
         handleChange={(value) => setFormat(value)}
-        showLevelSlider
+        heading={paletteName}
       />
       <ColorBoxWrapper>
-        {colors[level].map((color) => {
+        {colors.map((color) => {
           const { name, id: colorId } = color;
           return (
             <ColorBox

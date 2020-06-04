@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NavbarWrapper = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 6vh;
 `;
 
@@ -23,13 +23,4 @@ export const NavbarLogo = styled.div`
       vertical-align: top;
     }
   }
-`;
-
-export const SliderContainer = styled.div`
-  width: 340px;
-`;
-
-export const SelectContainer = styled.div`
-  margin-left: auto;
-  margin-right: 1rem;
 `;

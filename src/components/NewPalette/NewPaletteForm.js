@@ -111,7 +111,7 @@ const NewPaletteForm = (props) => {
                 disabled={colors.length >= maxColors}
                 onClick={addRandomColor}
               >
-                random color
+                add random color
               </Button>
             </div>
             <ColorPickerForm colors={colors} setColors={setColors} />
