@@ -15,6 +15,7 @@ import SimpleDialog from "../../Dialogs/SimpleDialog";
 import AlertDialog from "../../Dialogs/AlertDialog";
 import { transitionTime } from "../../../variables";
 import asyncLocalStorage from "../../../util/asyncLocalStorage";
+import defaultPalettes from "../../../util/seedColors";
 
 const PaletteList = (props) => {
   const { palettes, history, deletePalette } = props;
@@ -50,17 +51,17 @@ const PaletteList = (props) => {
             <h1>Color Picker</h1>
             <Button
               variant="contained"
-              style={{ backgroundColor: "#ff9d49" }}
               onClick={openResetDialog}
+              style={{
+                display:
+                  defaultPalettes.length === palettes.length
+                    ? "none"
+                    : "inline-flex",
+              }}
             >
               reset palettes
             </Button>
-            <Button
-              component={Link}
-              variant="contained"
-              to="/palette/new"
-              style={{ backgroundColor: "#58d666" }}
-            >
+            <Button component={Link} variant="contained" to="/palette/new">
               create palette
             </Button>
           </Nav>

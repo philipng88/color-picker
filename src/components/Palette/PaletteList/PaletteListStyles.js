@@ -34,6 +34,18 @@ export const Nav = styled.nav`
   justify-content: space-between;
   color: white;
   align-items: baseline;
+  button {
+    background-color: #ff9d49;
+    &:hover {
+      background-color: #ff9d49;
+    }
+  }
+  a {
+    background-color: #58d666;
+    &:hover {
+      background-color: #58d666;
+    }
+  }
   button,
   a {
     color: white;
