@@ -10,10 +10,8 @@ const ErrorPage = () => {
           <div className="notfound-404">
             <h1>404</h1>
           </div>
-          <h2>sorry, the page you are looking for can't be found!</h2>
-          <Link to="/">
-            <span className="arrow"></span>Return To Homepage
-          </Link>
+          <h2>sorry, the page you are looking for can&apos;t be found!</h2>
+          <Link to="/">Return To Homepage</Link>
         </div>
       </div>
       {/* This template was made by Colorlib (https://colorlib.com) */}

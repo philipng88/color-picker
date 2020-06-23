@@ -56,7 +56,9 @@ class ColorBox extends Component {
             <div className={boxContent}>
               <span className={adjustedColor}>{name}</span>
             </div>
-            <button className={clsx(copyButton, adjustedColor)}>copy</button>
+            <button type="button" className={clsx(copyButton, adjustedColor)}>
+              copy
+            </button>
           </div>
           {showingFullPalette && (
             <Link

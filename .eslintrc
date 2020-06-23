@@ -3,11 +3,16 @@
     "react-app",
     "airbnb",
     "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
     "prettier",
     "prettier/react"
   ],
   "plugins": ["react-hooks", "jsx-a11y", "prettier"],
   "rules": {
-    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}]
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+    "react/require-default-props": [0],
+    "react/forbid-prop-types": [0],
+    "react/prop-types": [1, {"ignore": ["history"]}],
+    "no-param-reassign": "off"
   }
 }

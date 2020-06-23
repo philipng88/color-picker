@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import chroma from "chroma-js";
+
+const adjustedColor = css`
+  color: ${({ color }) =>
+    chroma.contrast(color, "white") < 4.5 ? "rgba(0, 0, 0, 0.5)" : "white"};
+`;
 
 export const DraggableColorBoxWrapper = styled.div`
   background-color: ${({ color }) => color};
@@ -12,8 +17,7 @@ export const DraggableColorBoxWrapper = styled.div`
   cursor: grab;
   margin-bottom: -5.5px;
   &:hover svg {
-    color: ${({ color }) =>
-      chroma.contrast(color, "white") < 4.5 ? "rgba(0, 0, 0, 0.5)" : "white"};
+    ${adjustedColor}
     transform: scale(1.5);
   }
 `;
@@ -24,7 +28,6 @@ export const BoxContent = styled.div`
   left: 0;
   bottom: 0;
   padding: 10px;
-  color: rgba(0, 0, 0, 0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
@@ -33,11 +36,7 @@ export const BoxContent = styled.div`
   span {
     display: flex;
     align-items: center;
-    color: ${({ color }) => {
-      if (chroma.contrast(color, "white") > 4.5) {
-        return "white";
-      }
-    }};
+    ${adjustedColor}
   }
   svg {
     transition: all 0.3s ease-in-out;

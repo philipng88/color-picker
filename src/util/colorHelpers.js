@@ -2,13 +2,14 @@ import chroma from "chroma-js";
 import slugify from "slugify";
 
 const generatePalette = (starterPalette) => {
-  let newPalette = {
+  const newPalette = {
     paletteName: starterPalette.paletteName,
     id: starterPalette.id,
     emoji: starterPalette.emoji,
     colors: [],
   };
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const color of starterPalette.colors) {
     newPalette.colors.push({
       name: color.name,

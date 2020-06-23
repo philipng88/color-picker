@@ -67,8 +67,7 @@ const Navbar = (props) => {
 
 Navbar.propTypes = {
   handleChange: PropTypes.func,
-  paletteName: PropTypes.string,
-  colorName: PropTypes.string,
+  heading: PropTypes.string,
 };
 
 export default Navbar;

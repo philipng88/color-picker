@@ -3,32 +3,17 @@ import PropTypes from "prop-types";
 import chroma from "chroma-js";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
-import { maxColors } from "../../../variables";
 import { StyledChromePicker, ColorNameInput } from "./ColorPickerFormStyles";
 
 const ColorPickerForm = (props) => {
-  const { colors, setColors } = props;
+  const { colors, setColors, paletteIsFull } = props;
   const [newColorName, setNewColorName] = useState("");
   const [currentColor, setCurrentColor] = useState("#33C3F0");
-  const paletteIsFull = colors.length >= maxColors;
 
   const addNewColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
     setNewColorName("");
-  };
-
-  const AddColorButtonStyle = {
-    backgroundColor: !paletteIsFull ? currentColor : "rgba(0, 0, 0, 0.12)",
-    color: !paletteIsFull
-      ? chroma.contrast(currentColor, "white") < 4.5
-        ? "black"
-        : "white"
-      : "rgba(0, 0, 0, 0.26)",
-    width: "100%",
-    padding: "1rem",
-    marginTop: "1rem",
-    fontSize: "2rem",
   };
 
   useEffect(() => {
@@ -37,7 +22,7 @@ const ColorPickerForm = (props) => {
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       );
     });
-    ValidatorForm.addValidationRule("colorIsUnique", (value) => {
+    ValidatorForm.addValidationRule("colorIsUnique", () => {
       return colors.every(({ color }) => color !== currentColor);
     });
   }, [colors, currentColor]);
@@ -48,6 +33,7 @@ const ColorPickerForm = (props) => {
         color={currentColor}
         width="100%"
         onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
+        disableAlpha
       />
       <ValidatorForm onSubmit={addNewColor} instantValidate={false}>
         <ColorNameInput
@@ -67,7 +53,22 @@ const ColorPickerForm = (props) => {
         <Button
           variant="contained"
           type="submit"
-          style={AddColorButtonStyle}
+          style={{
+            backgroundColor: !paletteIsFull
+              ? currentColor
+              : "rgba(0, 0, 0, 0.12)",
+            color: (() => {
+              if (!paletteIsFull)
+                return chroma.contrast(currentColor, "white") < 4.5
+                  ? "black"
+                  : "white";
+              return "rgba(0, 0, 0, 0.26)";
+            })(),
+            width: "100%",
+            padding: "1rem",
+            marginTop: "1rem",
+            fontSize: "2rem",
+          }}
           disabled={paletteIsFull}
         >
           {paletteIsFull ? "palette full" : "add color"}
@@ -82,6 +83,7 @@ ColorPickerForm.propTypes = {
     PropTypes.shape({ color: PropTypes.string, name: PropTypes.string })
   ),
   setColors: PropTypes.func.isRequired,
+  paletteIsFull: PropTypes.bool.isRequired,
 };
 
 export default ColorPickerForm;

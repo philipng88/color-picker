@@ -16,7 +16,6 @@ const App = () => {
   const [palettes, setPalettes] = useState(
     JSON.parse(localStorage.getItem("palettes")) || seedColors
   );
-  // const findPalette = (id) => palettes.find((palette) => palette.id === id);
   const deletePalette = (id) =>
     setPalettes((prev) => prev.filter((palette) => palette.id !== id));
   const savePalette = (newPalette) => setPalettes([newPalette, ...palettes]);
@@ -114,7 +113,7 @@ const App = () => {
           </CSSTransition>
         </TransitionGroup>
       )}
-    ></Route>
+    />
   );
 };
 

@@ -38,10 +38,20 @@ const Palette = (props) => {
 };
 
 Palette.propTypes = {
-  colors: PropTypes.array,
-  emoji: PropTypes.string,
-  paletteName: PropTypes.string,
-  id: PropTypes.string,
+  palette: PropTypes.shape({
+    colors: PropTypes.arrayOf(
+      PropTypes.shape({
+        hex: PropTypes.string,
+        hsl: PropTypes.string,
+        id: PropTypes.string,
+        name: PropTypes.string,
+        rgb: PropTypes.string,
+      })
+    ),
+    emoji: PropTypes.string,
+    id: PropTypes.string,
+    paletteName: PropTypes.string,
+  }),
 };
 
 export default Palette;

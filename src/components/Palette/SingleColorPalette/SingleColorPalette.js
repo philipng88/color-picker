@@ -13,10 +13,12 @@ import {
 } from "./SingleColorPaletteStyles";
 
 const SingleColorPalette = (props) => {
-  const { palette, colorId } = props;
-  const { paletteName, emoji, id } = palette;
+  const {
+    colorId,
+    palette: { colors, emoji, id, paletteName },
+  } = props;
   const [format, setFormat] = useState("hex");
-  const color = palette.colors.find((item) => item.id === colorId);
+  const color = colors.find((item) => item.id === colorId);
   const shades = extractShades(color);
 
   return (
@@ -28,7 +30,7 @@ const SingleColorPalette = (props) => {
       <SingleColorBoxWrapper>
         {shades.slice(1).map((shade, index) => (
           <ColorBox
-            key={index}
+            key={shade}
             name={`Shade ${index + 1}`}
             background={(() => {
               switch (format) {
@@ -56,9 +58,20 @@ const SingleColorPalette = (props) => {
 
 SingleColorPalette.propTypes = {
   colorId: PropTypes.string,
-  paletteName: PropTypes.string,
-  emoji: PropTypes.string,
-  id: PropTypes.string,
+  palette: PropTypes.shape({
+    colors: PropTypes.arrayOf(
+      PropTypes.shape({
+        hex: PropTypes.string,
+        hsl: PropTypes.string,
+        id: PropTypes.string,
+        name: PropTypes.string,
+        rgb: PropTypes.string,
+      })
+    ),
+    emoji: PropTypes.string,
+    id: PropTypes.string,
+    paletteName: PropTypes.string,
+  }),
 };
 
 export default SingleColorPalette;

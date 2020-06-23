@@ -114,7 +114,11 @@ const NewPaletteForm = (props) => {
                 add random color
               </Button>
             </div>
-            <ColorPickerForm colors={colors} setColors={setColors} />
+            <ColorPickerForm
+              colors={colors}
+              setColors={setColors}
+              paletteIsFull={colors.length >= maxColors}
+            />
           </div>
         </Drawer>
         <main
